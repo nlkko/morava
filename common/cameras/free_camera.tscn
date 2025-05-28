@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0j173wtrsjf3"]
+
+[ext_resource type="Script" path="res://common/cameras/FreeCameraMovement.cs" id="1_w5a0j"]
+[ext_resource type="Script" path="res://common/cameras/utility/TexelSnap.cs" id="2_uwd42"]
+
+[node name="SubViewport" type="SubViewport"]
+handle_input_locally = false
+size = Vector2i(322, 188)
+render_target_update_mode = 4
+
+[node name="Camera Rig" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 0, 0)
+script = ExtResource("1_w5a0j")
+
+[node name="Camera" type="Camera3D" parent="Camera Rig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+projection = 1
+size = 10.0
+far = 200.0
+script = ExtResource("2_uwd42")

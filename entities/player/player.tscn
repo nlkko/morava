@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5tusu4v1aqup"]
+
+[ext_resource type="Script" path="res://entities/player/Player.cs" id="1_edmx6"]
+[ext_resource type="Material" uid="uid://cx2h5oxp2nfex" path="res://materials/outline.tres" id="2_ekjxv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ecmv"]
+next_pass = ExtResource("2_ekjxv")
+albedo_color = Color(0.647059, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qgk12"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fqv7e"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_edmx6")
+InputVelocity = 1
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0143604, -2.38419e-07, 0.0226297)
+
+[node name="Mesh" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 1, 0, 0.75, 0)
+material_override = SubResource("StandardMaterial3D_6ecmv")
+mesh = SubResource("BoxMesh_qgk12")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 1, 0.0143604, 0.75, 0.0226297)
+shape = SubResource("ConvexPolygonShape3D_fqv7e")

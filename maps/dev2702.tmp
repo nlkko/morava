@@ -1,0 +1,149 @@
+[gd_scene load_steps=20 format=3 uid="uid://oqtm3lj3fcrj"]
+
+[ext_resource type="PackedScene" uid="uid://c5tusu4v1aqup" path="res://characters/player/player.tscn" id="1_4yrh1"]
+[ext_resource type="PackedScene" uid="uid://ca3wv7fsowfp5" path="res://characters/cameras/free_move_camera.tscn" id="2_80rdw"]
+[ext_resource type="Texture2D" uid="uid://ba82d2uciebuk" path="res://textures/checker_gray.png" id="3_hi7yb"]
+[ext_resource type="Texture2D" uid="uid://dfweahttpn162" path="res://textures/checker_red.png" id="4_hm0vw"]
+[ext_resource type="Material" uid="uid://cx2h5oxp2nfex" path="res://materials/outlines.tres" id="5_escfi"]
+[ext_resource type="Script" path="res://scenes/c_amera_rig.gd" id="6_j6ovj"]
+[ext_resource type="Script" path="res://characters/cameras/test_1.gd" id="7_6iptb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_en1kc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_dq52l"]
+sky_material = SubResource("ProceduralSkyMaterial_en1kc")
+
+[sub_resource type="Environment" id="Environment_twvi1"]
+background_mode = 1
+background_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+sky = SubResource("Sky_dq52l")
+ambient_light_source = 3
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3txo0"]
+next_pass = ExtResource("5_escfi")
+albedo_texture = ExtResource("3_hi7yb")
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ybifs"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cjrfo"]
+points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2plx"]
+next_pass = ExtResource("5_escfi")
+albedo_texture = ExtResource("4_hm0vw")
+uv2_scale = Vector3(4, 4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mggqn"]
+next_pass = ExtResource("5_escfi")
+albedo_color = Color(0.739956, 0.222911, 6.73831e-07, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_etsyc"]
+next_pass = ExtResource("5_escfi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lh0as"]
+next_pass = ExtResource("5_escfi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6sja"]
+next_pass = ExtResource("5_escfi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1yaq7"]
+next_pass = ExtResource("5_escfi")
+
+[node name="dev2" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_4yrh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05819, 0)
+
+[node name="Free Move Camera" parent="Player" instance=ExtResource("2_80rdw")]
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.642788, -0.541675, 0.541675, 0, 0.707107, 0.707107, -0.766044, 0.45452, -0.45452, 0, 0, 0)
+visible = false
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_twvi1")
+
+[node name="Objects" type="Node3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects"]
+transform = Transform3D(8.035, 0, 0, 0, 8.035, 0, 0, 0, 8.035, 0.00783527, 0.0254402, -0.00832889)
+material_override = SubResource("StandardMaterial3D_3txo0")
+mesh = SubResource("PlaneMesh_ybifs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Objects/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_cjrfo")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Objects"]
+transform = Transform3D(0.145555, 0, -1.64357, 0, 1.65, 0, 1.64357, 0, 0.145555, 3.79445, 1.08434, -4.25701)
+material_override = SubResource("StandardMaterial3D_f2plx")
+size = Vector3(2.22614, 3.16867, 2.24371)
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Objects"]
+transform = Transform3D(-0.569369, 0.273663, 0.775195, -0.780797, -0.47509, -0.405766, 0.257244, -0.8363, 0.484177, -5.07316, 3.1257, -5.15837)
+material_override = SubResource("StandardMaterial3D_mggqn")
+inner_radius = 0.498767
+outer_radius = 1.15257
+sides = 17
+ring_sides = 10
+smooth_faces = false
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.10491, -0.0469601, -5.00746)
+material_override = SubResource("StandardMaterial3D_etsyc")
+polygon = PackedVector2Array(0, 0, 0.240041, 1.47678, 0.407291, 1.75382, 1, 0)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 10
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Objects"]
+transform = Transform3D(0.443162, 0.0366688, -0.895692, -0.780797, -0.47509, -0.405766, -0.440413, 0.879173, -0.181911, 4.93751, 4.01102, 5.61786)
+material_override = SubResource("StandardMaterial3D_lh0as")
+radius = 1.23399
+radial_segments = 5
+rings = 4
+smooth_faces = false
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Objects"]
+transform = Transform3D(1, 1.58051e-08, 0, 5.96046e-08, 1, -1.49012e-08, 0, 2.63418e-08, 1, 4.60768, 0.984591, 5.75176)
+material_override = SubResource("StandardMaterial3D_f6sja")
+radius = 1.34054
+height = 2.16235
+smooth_faces = false
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Objects"]
+transform = Transform3D(0.145555, 0, -1.64357, 0, 1.65, 0, 1.64357, 0, 0.145555, 2.15031, 1.08434, -2.2402)
+material_override = SubResource("StandardMaterial3D_1yaq7")
+radius = 0.975525
+height = 2.13688
+sides = 21
+smooth_faces = false
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.961043, 0.263264, 0.084188, -0.10794, 0.0770724, 0.991165, 0.254449, -0.96164, 0.102487, 1.12846, 11.0694, 1.92133)
+light_color = Color(0.992157, 0.65098, 0.227451, 1)
+light_energy = 12.279
+spot_range = 28.2418
+spot_angle = 29.2916
+
+[node name="CAmera rig" type="Node3D" parent="."]
+script = ExtResource("6_j6ovj")
+circular_radius = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="CAmera rig"]
+transform = Transform3D(1, 0, 0, 0, 0.890229, 0.455514, 0, -0.455514, 0.890229, 0, 8.77289, 13.6362)
+projection = 1
+current = true
+size = 20.0
+script = ExtResource("7_6iptb")
+snap = null
+snap_objects = null

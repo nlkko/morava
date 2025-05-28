@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhxih7qy6jo76"]
+
+[ext_resource type="PackedScene" uid="uid://degldy6e4ufkf" path="res://maps/world/shapes.tscn" id="1_bosqa"]
+[ext_resource type="PackedScene" uid="uid://d0j173wtrsjf3" path="res://common/cameras/free_camera.tscn" id="3_lg8x1"]
+[ext_resource type="PackedScene" uid="uid://b75fyisvxw1g" path="res://common/resolution_management/display.tscn" id="3_trkvy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ms08e"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_03ibq"]
+sky_material = SubResource("ProceduralSkyMaterial_ms08e")
+
+[sub_resource type="Environment" id="Environment_n0h3x"]
+background_mode = 1
+background_color = Color(0.136826, 0.136826, 0.136826, 1)
+sky = SubResource("Sky_03ibq")
+ambient_light_source = 2
+ambient_light_color = Color(0.385493, 0.385492, 0.385492, 1)
+ambient_light_energy = 1.75
+glow_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1ppm8"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Dev" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n0h3x")
+
+[node name="Spotlight" type="SpotLight3D" parent="."]
+transform = Transform3D(0.723823, -3.01603e-08, 0.689986, -0.689986, -3.16393e-08, 0.723823, -1.0561e-15, -1, -4.37114e-08, 4.50181, 6.12173, 0)
+light_color = Color(0.839216, 0.466667, 0, 1)
+light_energy = 16.0
+spot_range = 11.9043
+spot_attenuation = 0.87
+spot_angle = 21.7387
+spot_angle_attenuation = 0.0980742
+
+[node name="World" parent="." instance=ExtResource("1_bosqa")]
+
+[node name="Display" parent="." node_paths=PackedStringArray("Viewport") instance=ExtResource("3_trkvy")]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+Viewport = NodePath("../SubViewport")
+
+[node name="Sprite2D" parent="Display" index="0"]
+texture = SubResource("ViewportTexture_1ppm8")
+
+[node name="SubViewport" parent="." instance=ExtResource("3_lg8x1")]
+
+[editable path="Display"]
+[editable path="SubViewport"]
