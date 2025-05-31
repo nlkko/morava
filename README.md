@@ -1,5 +1,8 @@
+# Morava
+A Godot project trying to emulate pixel art in 3D.
+
 ## TODO:
-* Grass improvements?
-* Clouds
-* Water
+* Improve grass?
+* Add clouds
+* Add water
 * Volumetric lighting?
