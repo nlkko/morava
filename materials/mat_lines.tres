@@ -1,18 +1,25 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dptebrvj2q3iy"]
 
-[ext_resource type="Shader" uid="uid://sgnw5tqh6nqq" path="res://shaders/lines.gdshader" id="1_7bf5b"]
+[ext_resource type="Shader" uid="uid://sgnw5tqh6nqq" path="res://shaders/global/lines.gdshader" id="1_7bf5b"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_7bf5b")
+shader_parameter/relative_color = true
+shader_parameter/outline_strength = -0.04
+shader_parameter/edge_strength = 0.12
 shader_parameter/albedo = Color(0.75, 0.75, 0.75, 1)
-shader_parameter/outline_strength = 0.3
-shader_parameter/edge_strength = 1.6
 shader_parameter/outline_color = Color(0, 0, 1, 1)
 shader_parameter/edge_color = Color(1, 0, 0, 1)
-shader_parameter/depth_threshold = 0.25
-shader_parameter/depth_normal_threshold = 0.5
+shader_parameter/depth_threshold = 0.14
+shader_parameter/depth_normal_threshold = 0.04
 shader_parameter/depth_normal_threshold_scale = 2.0
-shader_parameter/convex_threshold = 0.5
-shader_parameter/convex_normal_threshold = 1.0
-shader_parameter/convex_normal_threshold_scale = 0.0
+shader_parameter/convex_threshold = 0.2
+shader_parameter/convex_normal_threshold = 0.25
+shader_parameter/convex_normal_threshold_scale = 2.0
+shader_parameter/normals_debug = false
+shader_parameter/depth_debug = false
+shader_parameter/convex_normal_threshold_debug = false
+shader_parameter/convex_normal_threshold_scale_debug = false
+shader_parameter/depth_normal_threshold_scale_debug = false
+shader_parameter/depth_threshold_debug = false

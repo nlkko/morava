@@ -1,26 +1,56 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dkockynbv8xwl"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dkockynbv8xwl"]
 
-[ext_resource type="Shader" uid="uid://sgnw5tqh6nqq" path="res://shaders/lines.gdshader" id="1_ahdlq"]
 [ext_resource type="Shader" uid="uid://gtu8m7hskqf3" path="res://addons/flexible_toon_shader/flexible_toon.gdshader" id="2_e4784"]
+[ext_resource type="Shader" uid="uid://sgnw5tqh6nqq" path="res://shaders/global/lines.gdshader" id="2_pab5f"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pab5f"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e4784"]
 render_priority = 0
-shader = ExtResource("1_ahdlq")
+shader = ExtResource("2_pab5f")
+shader_parameter/relative_color = true
+shader_parameter/outline_strength = -0.03
+shader_parameter/edge_strength = 0.03
 shader_parameter/albedo = Color(0.75, 0.75, 0.75, 1)
-shader_parameter/outline_strength = 0.3
-shader_parameter/edge_strength = 1.6
 shader_parameter/outline_color = Color(0, 0, 1, 1)
 shader_parameter/edge_color = Color(1, 0, 0, 1)
-shader_parameter/depth_threshold = 0.25
-shader_parameter/depth_normal_threshold = 0.5
+shader_parameter/depth_threshold = 0.8
+shader_parameter/depth_normal_threshold = 0.94
 shader_parameter/depth_normal_threshold_scale = 2.0
-shader_parameter/convex_threshold = 0.5
-shader_parameter/convex_normal_threshold = 1.0
-shader_parameter/convex_normal_threshold_scale = 0.0
+shader_parameter/convex_threshold = 0.2
+shader_parameter/convex_normal_threshold = 0.5
+shader_parameter/convex_normal_threshold_scale = 2.0
+shader_parameter/normals_debug = false
+shader_parameter/depth_debug = false
+shader_parameter/convex_normal_threshold_debug = false
+shader_parameter/convex_normal_threshold_scale_debug = false
+shader_parameter/depth_normal_threshold_scale_debug = false
+shader_parameter/depth_threshold_debug = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahdlq"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_e4784")
+shader = ExtResource("2_pab5f")
+shader_parameter/relative_color = true
+shader_parameter/outline_strength = -0.19
+shader_parameter/edge_strength = 0.23
+shader_parameter/albedo = Color(0.75, 0.75, 0.75, 1)
+shader_parameter/outline_color = Color(0, 0, 1, 1)
+shader_parameter/edge_color = Color(1, 0, 0, 1)
+shader_parameter/depth_threshold = 0.8
+shader_parameter/depth_normal_threshold = 0.94
+shader_parameter/depth_normal_threshold_scale = 2.0
+shader_parameter/convex_threshold = 0.2
+shader_parameter/convex_normal_threshold = 0.5
+shader_parameter/convex_normal_threshold_scale = 2.0
+shader_parameter/normals_debug = false
+shader_parameter/depth_debug = false
+shader_parameter/convex_normal_threshold_debug = false
+shader_parameter/convex_normal_threshold_scale_debug = false
+shader_parameter/depth_normal_threshold_scale_debug = false
+shader_parameter/depth_threshold_debug = false
 
 [resource]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_pab5f")
+next_pass = SubResource("ShaderMaterial_ahdlq")
 shader = ExtResource("2_e4784")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/clamp_diffuse_to_max = true

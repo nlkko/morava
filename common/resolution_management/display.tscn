@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b75fyisvxw1g"]
 
-[ext_resource type="Script" path="res://common/resolution_management/Display.cs" id="1_8bgtu"]
-[ext_resource type="Shader" path="res://shaders/upscale.gdshader" id="2_kj8p3"]
+[ext_resource type="Script" uid="uid://dpk28dxu48qcy" path="res://common/resolution_management/Display.cs" id="1_8bgtu"]
+[ext_resource type="Shader" uid="uid://houkp6rxkp6b" path="res://shaders/global/upscale.gdshader" id="2_kj8p3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_haafq"]
 shader = ExtResource("2_kj8p3")

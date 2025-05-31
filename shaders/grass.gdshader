@@ -1,6 +1,7 @@
 shader_type spatial;
 
 //render_mode ambient_light_disabled;
+//render_mode cull_disabled;
 
 uniform vec4 albedo : source_color = vec4(1.0f);
 uniform sampler2D albedo_texture : source_color;
@@ -30,16 +31,21 @@ uniform float border_width = 0.01f;
 varying vec3 vertex_pos;
 varying vec3 normal;
 
+varying vec3 instance_origin;
+
 float split_specular(float specular) {
 	return step(0.5f, specular);
 }
 
 void vertex() {
+	MODELVIEW_MATRIX = mat4(MODEL_MATRIX[0], MODEL_MATRIX[1], MODEL_MATRIX[2], VIEW_MATRIX * MODEL_MATRIX[3]);
+	instance_origin = MODELVIEW_MATRIX[3].xyz;
 	vertex_pos = VERTEX;
 	normal = NORMAL;
 }
 
 void fragment() {
+	LIGHT_VERTEX = instance_origin;
 	ALBEDO = albedo.rgb * texture(albedo_texture, UV).rgb;
 }
 
@@ -49,7 +55,7 @@ void light() {
 	if (use_attenuation) {
 		attenuation = ATTENUATION;
 	}
-
+	
 	// Diffuse lighting.
 	float NdotL = dot(NORMAL, LIGHT);
 	float diffuse_amount = NdotL + (attenuation - 1.0) + wrap;
@@ -65,7 +71,7 @@ void light() {
 		border = step(diffuse_stepped - corr_border_width, diffuse_amount)
 				 - step(1.0 - corr_border_width, diffuse_amount);
 	}
-
+	
 	// Apply diffuse result to different styles.
 	vec3 diffuse = ALBEDO.rgb * LIGHT_COLOR / PI;
 	if (use_ramp) {
@@ -73,14 +79,14 @@ void light() {
 	} else {
 		diffuse *= diffuse_stepped * (1.0f - border);
 	}
-
+	
 	if (clamp_diffuse_to_max) {
 		// Clamp diffuse to max for multiple light sources.
 		DIFFUSE_LIGHT = max(DIFFUSE_LIGHT, diffuse);
 	} else {
 		DIFFUSE_LIGHT += diffuse;
 	}
-
+	
 	// Specular lighting.
 	if (use_specular) {
 		vec3 H = normalize(LIGHT + VIEW);
@@ -91,7 +97,7 @@ void light() {
 		specular_amount = split_specular(specular_amount);
 		SPECULAR_LIGHT += specular_strength * specular_amount * LIGHT_COLOR;
 	}
-
+	
 	// Simple rim lighting.
 	if (use_rim) {
 		float NdotV = dot(NORMAL, VIEW);

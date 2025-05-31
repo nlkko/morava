@@ -1,0 +1,119 @@
+[gd_scene load_steps=17 format=3 uid="uid://dlivy85i1om0p"]
+
+[ext_resource type="PackedScene" uid="uid://b75fyisvxw1g" path="res://common/resolution_management/display.tscn" id="1_i16tq"]
+[ext_resource type="PackedScene" uid="uid://d0j173wtrsjf3" path="res://common/cameras/free_camera.tscn" id="2_iaflv"]
+[ext_resource type="Material" uid="uid://dkockynbv8xwl" path="res://materials/spatial_mat.tres" id="3_u5lv6"]
+[ext_resource type="Shader" uid="uid://sgnw5tqh6nqq" path="res://shaders/global/lines.gdshader" id="4_u5lv6"]
+[ext_resource type="Shader" uid="uid://bgsn4x7sis77t" path="res://shaders/grass_test.gdshader" id="5_f4luc"]
+[ext_resource type="ArrayMesh" uid="uid://deiecrj4ebw06" path="res://assets/field.obj" id="6_mr6uq"]
+[ext_resource type="Script" uid="uid://cnvlgnxs7wgm" path="res://utilities/Planter.cs" id="7_3en14"]
+[ext_resource type="Material" uid="uid://qxuxob25hylg" path="res://materials/grass.tres" id="7_f4luc"]
+[ext_resource type="ArrayMesh" uid="uid://ifrcajseogty" path="res://assets/grass.obj" id="8_mr6uq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ms08e"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_03ibq"]
+sky_material = SubResource("ProceduralSkyMaterial_ms08e")
+
+[sub_resource type="Environment" id="Environment_n0h3x"]
+background_mode = 1
+background_color = Color(0.136826, 0.136826, 0.136826, 1)
+sky = SubResource("Sky_03ibq")
+ambient_light_source = 2
+ambient_light_color = Color(0.385493, 0.385492, 0.385492, 1)
+ambient_light_energy = 1.75
+glow_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1ppm8"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="SphereMesh" id="SphereMesh_rr3x7"]
+material = ExtResource("3_u5lv6")
+radius = 0.3
+height = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pab5f"]
+render_priority = 0
+shader = ExtResource("4_u5lv6")
+shader_parameter/relative_color = true
+shader_parameter/outline_strength = 0.3
+shader_parameter/edge_strength = 1.6
+shader_parameter/albedo = Color(0.75, 0.75, 0.75, 1)
+shader_parameter/outline_color = Color(0, 0, 1, 1)
+shader_parameter/edge_color = Color(1, 0, 0, 1)
+shader_parameter/depth_threshold = 0.25
+shader_parameter/depth_normal_threshold = 0.5
+shader_parameter/depth_normal_threshold_scale = 2.0
+shader_parameter/convex_threshold = 0.5
+shader_parameter/convex_normal_threshold = 1.0
+shader_parameter/convex_normal_threshold_scale = 0.0
+shader_parameter/normals_debug = false
+shader_parameter/depth_debug = false
+shader_parameter/convex_normal_threshold_debug = false
+shader_parameter/convex_normal_threshold_scale_debug = false
+shader_parameter/depth_normal_threshold_scale_debug = false
+shader_parameter/depth_threshold_debug = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4luc"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_pab5f")
+shader = ExtResource("5_f4luc")
+shader_parameter/albedo = Color(0.57851, 0.82, 0.5658, 1)
+shader_parameter/wrap = 0.142
+shader_parameter/steepness = 1.787
+shader_parameter/cuts = 3
+
+[node name="Dev" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.04892, -0.581244, 0.812258, 0.968185, -0.227407, -0.104419, 0.245406, 0.781308, 0.573877, -2.33897, -1.51023, -10.0811)
+light_energy = 0.464
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n0h3x")
+
+[node name="Display" parent="." node_paths=PackedStringArray("Viewport") instance=ExtResource("1_i16tq")]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+Viewport = NodePath("../SubViewport")
+
+[node name="Sprite2D" parent="Display" index="0"]
+texture = SubResource("ViewportTexture_1ppm8")
+
+[node name="SubViewport" parent="." instance=ExtResource("2_iaflv")]
+
+[node name="Light Orb" type="Node3D" parent="."]
+transform = Transform3D(0.505838, 0, -0.862629, 0, 1, 0, 0.862629, 0, 0.505838, -3.02762, 1.0148, -18.8856)
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Light Orb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7115, 0)
+light_color = Color(0.95, 0.695717, 0.2565, 1)
+light_energy = 1.829
+light_specular = 10.528
+distance_fade_begin = 1313.37
+omni_range = 6.916
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Light Orb"]
+mesh = SubResource("SphereMesh_rr3x7")
+
+[node name="Plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(-6.57368, 0, -0.936158, 0, 6.64, 0, 0.936158, 0, -6.57368, -2.33897, -1.51023, -10.1004)
+material_override = SubResource("ShaderMaterial_f4luc")
+mesh = ExtResource("6_mr6uq")
+script = ExtResource("7_3en14")
+instantiatedMesh = ExtResource("8_mr6uq")
+instanceCount = 30000
+instantiatedShaderMaterial = ExtResource("7_f4luc")
+
+[editable path="Display"]
+[editable path="SubViewport"]

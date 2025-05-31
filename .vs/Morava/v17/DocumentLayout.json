@@ -1,12 +1,69 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Dorde\\Documents\\Projects\\Godot\\Morava\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{55424258-91F4-4166-B47F-CC9C9FE8D9B4}|Morava.csproj|c:\\users\\dorde\\documents\\projects\\godot\\morava\\utilities\\planter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55424258-91F4-4166-B47F-CC9C9FE8D9B4}|Morava.csproj|solutionrelative:utilities\\planter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55424258-91F4-4166-B47F-CC9C9FE8D9B4}|Morava.csproj|c:\\users\\dorde\\documents\\projects\\godot\\morava\\utilities\\motion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55424258-91F4-4166-B47F-CC9C9FE8D9B4}|Morava.csproj|solutionrelative:utilities\\motion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55424258-91F4-4166-B47F-CC9C9FE8D9B4}|Morava.csproj|c:\\users\\dorde\\documents\\projects\\godot\\morava\\entities\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55424258-91F4-4166-B47F-CC9C9FE8D9B4}|Morava.csproj|solutionrelative:entities\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Motion.cs",
+              "DocumentMoniker": "C:\\Users\\Dorde\\Documents\\Projects\\Godot\\Morava\\utilities\\Motion.cs",
+              "RelativeDocumentMoniker": "utilities\\Motion.cs",
+              "ToolTip": "C:\\Users\\Dorde\\Documents\\Projects\\Godot\\Morava\\utilities\\Motion.cs",
+              "RelativeToolTip": "utilities\\Motion.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T09:07:17.231Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\Dorde\\Documents\\Projects\\Godot\\Morava\\entities\\player\\Player.cs",
+              "RelativeDocumentMoniker": "entities\\player\\Player.cs",
+              "ToolTip": "C:\\Users\\Dorde\\Documents\\Projects\\Godot\\Morava\\entities\\player\\Player.cs",
+              "RelativeToolTip": "entities\\player\\Player.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T08:37:52.758Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Planter.cs",
+              "DocumentMoniker": "C:\\Users\\Dorde\\Documents\\Projects\\Godot\\Morava\\utilities\\Planter.cs",
+              "RelativeDocumentMoniker": "utilities\\Planter.cs",
+              "ToolTip": "C:\\Users\\Dorde\\Documents\\Projects\\Godot\\Morava\\utilities\\Planter.cs",
+              "RelativeToolTip": "utilities\\Planter.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowCMAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T23:36:32.146Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

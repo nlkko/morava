@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://qxuxob25hylg"]
+
+[ext_resource type="Shader" uid="uid://yduptbqkm5hm" path="res://shaders/grass_test2.gdshader" id="1_oysvd"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_oysvd")
+shader_parameter/albedo = Color(0.423529, 0.819608, 0.4, 1)
+shader_parameter/wrap = 0.0
+shader_parameter/steepness = 1.0
+shader_parameter/cuts = 5
+shader_parameter/billboard = true

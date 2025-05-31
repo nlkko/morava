@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dv0vi5hlx2bvm"]
+
+[ext_resource type="Shader" uid="uid://drundal3eq1mj" path="res://shaders/debug/normalmap.gdshader" id="1_4xdrh"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4xdrh")
